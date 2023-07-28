@@ -90,6 +90,13 @@ lib
 
 - The `presentation` folder also known as `presentation layer` which contains all the `UI` components.
 
+### SetUp:
+
+- `Clone` from the provided repo link.
+- Run command `flutter pub get`.
+- Create `firebase` project and set it up, also enable `google` sign-in & set up SHA1 or 256 fingerprint and `email and password` signin.
+- Run the project, via command `flutter run` or `IDE`.
+
 ##### Authentication :
 
 - [firebase_auth: ^4.2.3](https://pub.dev/packages/firebase_auth)
@@ -112,7 +119,7 @@ lib
 ##### Firebase :
 
 - [firebase_core: ^2.4.0](https://pub.dev/packages/firebase_core)
-
+- [cloud_firestore: ^4.8.4](https://pub.dev/packages/cloud_firestore)
 ##### Icons, Theme and animations :
 
 - [lottie: ^2.1.0](https://pub.dev/packages/lottie)
@@ -126,9 +133,8 @@ lib
 - [dartz: ^0.10.1](https://pub.dev/packages/dartz)
 - [freezed_annotation: ^2.2.0](https://pub.dev/packages/freezed_annotation)
 - [freezed: ^2.2.0](https://pub.dev/packages/freezed)
-- [json_annotation: ^4.4.0](https://pub.dev/packages/json_annotation)
-- [json_serializable: ^6.1.4](https://pub.dev/packages/json_serializable)
 - [json_annotation: ^4.7.0](https://pub.dev/packages/json_annotation)
+- [json_serializable: ^6.5.4](https://pub.dev/packages/json_serializable)
 - [build_runner: ^2.3.0](https://pub.dev/packages/build_runner)
 - [hive_test: ^1.0.1](https://pub.dev/packages/hive_test)
 - [http_mock_adapter: ^0.3.3](https://pub.dev/packages/http_mock_adapter)
