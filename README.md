@@ -1,6 +1,6 @@
 # Movie App
 
-A simple mobile client app for browsing movies from TMDB
+A simple mobile app for browsing movies from TMDB
 
 ## Content
 
