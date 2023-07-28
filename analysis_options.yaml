@@ -1,0 +1,14 @@
+include: package:very_good_analysis/analysis_options.yaml
+analyzer:
+  errors:
+    invalid_annotation_target: ignore
+linter:
+  rules:
+    prefer_single_quotes: true
+    always_use_package_imports: true
+    flutter_style_todos: false
+    avoid_redundant_argument_values: false
+    sort_pub_dependencies: false
+    public_member_api_docs: false
+    non_constant_identifier_names: false
+    no_default_cases: false
