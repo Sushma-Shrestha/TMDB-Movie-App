@@ -57,9 +57,9 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
     return KeyboardVisibilityBuilder(
       builder: (context, isKeyboardVisible) {
         return Scaffold(
-          backgroundColor: Theme.of(context).backgroundColor,
+          backgroundColor: Theme.of(context).colorScheme.background,
           appBar: AppBar(
-            backgroundColor: Theme.of(context).backgroundColor,
+            backgroundColor: Theme.of(context).colorScheme.background,
             elevation: 0,
             leadingWidth: 100,
             leading: Padding(
@@ -77,7 +77,7 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
                 },
                 child: Text(
                   'Skip'.hardcoded,
-                  style: Theme.of(context).textTheme.subtitle1?.copyWith(
+                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
                         color: Theme.of(context).primaryColor,
                       ),
                 ),
@@ -111,14 +111,14 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
                               'Hello there,'.hardcoded,
                               style: Theme.of(context)
                                   .textTheme
-                                  .headline5
+                                  .headlineSmall
                                   ?.copyWith(fontWeight: FontWeight.w400),
                             ),
                             Text(
                               'Sign up to continue'.hardcoded,
                               style: Theme.of(context)
                                   .textTheme
-                                  .subtitle1
+                                  .titleMedium
                                   ?.copyWith(fontWeight: FontWeight.w500),
                             ),
                             const SizedBox(height: 30),
@@ -181,7 +181,7 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
                                     'OR'.hardcoded,
                                     style: Theme.of(context)
                                         .textTheme
-                                        .bodyText2
+                                        .bodyMedium
                                         ?.copyWith(fontWeight: FontWeight.w500),
                                   ),
                                 ),
@@ -206,7 +206,7 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
                             children: [
                               TextSpan(
                                 text: 'Already have an account? '.hardcoded,
-                                style: Theme.of(context).textTheme.subtitle2,
+                                style: Theme.of(context).textTheme.titleSmall,
                               ),
                               TextSpan(
                                 recognizer: TapGestureRecognizer()
@@ -214,9 +214,9 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
                                 text: 'Sign in'.hardcoded,
                                 style: Theme.of(context)
                                     .textTheme
-                                    .subtitle2
+                                    .titleSmall
                                     ?.copyWith(
-                                      color: Theme.of(context).coreRed,
+                                      color: Theme.of(context).coreBlue,
                                     ),
                               ),
                             ],

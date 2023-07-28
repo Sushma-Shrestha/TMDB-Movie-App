@@ -26,42 +26,73 @@ class _LatestMoviesPageState extends ConsumerState<LatestMoviesPage> {
 
   @override
   Widget build(BuildContext context) {
+    var searchon = false;
     final scrollControllerProvider = ref.watch(moviesScrollControllerProvider);
     final isDarkTheme = ref.watch(themeProvider).isDarkTheme;
-    // final isSkipped = ref.watch(skippedProvider);
-    // final user = ref.watch(getUserDataControllerProvider);
-    final isLoggedin = ref.watch(authStatusProvider).loggedInStatus;
     final user = ref.watch(authStatusProvider).user;
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
       appBar: AppBar(
+        // ignore: avoid_bool_literals_in_conditional_expressions
         automaticallyImplyLeading: false,
         leading: Padding(
           padding: const EdgeInsets.only(left: 8),
-          child: GestureDetector(
-            onTap: () => scrollControllerProvider.animateTo(
-              scrollControllerProvider.position.minScrollExtent,
-              duration: const Duration(milliseconds: 300),
-              curve: Curves.easeInOut,
-            ),
-            child: Image.asset(
-              AppAssets.appLogo,
-              height: 100,
-              width: 100,
-            ),
+          child: Row(
+            children: [
+              if (searchon == true || _searchController.text.isNotEmpty)
+                IconButton(
+                  onPressed: () {
+                    setState(() {
+                      searchon = false;
+                      _searchController.clear();
+                      FocusScope.of(context).unfocus();
+                    });
+                    ref.read(latestMoviesController.notifier).fetchSearchMovies(
+                          forceRefresh: true,
+                          page: 1,
+                          query: '',
+                        );
+
+                    ref
+                        .watch(latestMoviesController.notifier)
+                        .fetchLatestMovies(
+                          forceRefresh: true,
+                          page: 1,
+                        );
+                  },
+                  icon: const Icon(Icons.arrow_back),
+                )
+              else
+                Container(),
+              GestureDetector(
+                onTap: () => scrollControllerProvider.animateTo(
+                  scrollControllerProvider.position.minScrollExtent,
+                  duration: const Duration(milliseconds: 300),
+                  curve: Curves.easeInOut,
+                ),
+                child: Image.asset(
+                  AppAssets.appLogo,
+                  height: 100,
+                  width: 100,
+                ),
+              ),
+            ],
           ),
         ),
-        leadingWidth: 100,
+        leadingWidth: 180,
         actions: [
-          Builder(builder: (context) {
-            return IconButton(
-              icon: CircleAvatar(
-                backgroundImage: NetworkImage(
-                    'https://ui-avatars.com/api/?name=${user?.email}&size=256'),
-              ),
-              onPressed: () => displayEndDrawer(context),
-            );
-          }),
+          Builder(
+            builder: (context) {
+              return IconButton(
+                icon: CircleAvatar(
+                  backgroundImage: NetworkImage(
+                    'https://ui-avatars.com/api/?name=${user?.email}&size=256',
+                  ),
+                ),
+                onPressed: () => displayEndDrawer(context),
+              );
+            },
+          ),
         ],
         bottom: AppBar(
           // search bar
@@ -74,74 +105,80 @@ class _LatestMoviesPageState extends ConsumerState<LatestMoviesPage> {
           ),
           actions: [
             IconButton(
-                onPressed: () {
-                  ref.read(latestMoviesController.notifier).fetchSearchMovies(
-                        forceRefresh: true,
-                        page: 1,
-                        query: _searchController.text,
-                      );
-                },
-                icon: Icon(Icons.search)),
+              onPressed: () {
+                ref.read(latestMoviesController.notifier).fetchSearchMovies(
+                      forceRefresh: true,
+                      page: 1,
+                      query: _searchController.text,
+                    );
+
+                setState(() {
+                  searchon = true;
+                  FocusScope.of(context).unfocus();
+                });
+              },
+              icon: const Icon(Icons.search),
+            ),
           ],
         ),
       ),
       endDrawer: Drawer(
-          child: user != null
-              ? ListView(
-                  padding: EdgeInsets.zero,
-                  children: [
-                    DrawerHeader(
-                      child: Center(
-                        child: Container(
-                          height: 100,
-                          width: 100,
-                          child: CircleAvatar(
-                            backgroundImage: NetworkImage(
-                                'https://ui-avatars.com/api/?name=${user.email}&size=256'),
+        child: user != null
+            ? ListView(
+                padding: EdgeInsets.zero,
+                children: [
+                  DrawerHeader(
+                    child: Center(
+                      child: Container(
+                        height: 100,
+                        width: 100,
+                        child: CircleAvatar(
+                          backgroundImage: NetworkImage(
+                            'https://ui-avatars.com/api/?name=${user.email}&size=256',
                           ),
                         ),
                       ),
                     ),
-                    ListTile(
-                      leading: Icon(Icons.favorite),
-                      title: const Text('Favorites'),
-                      onTap: () {
-                        context.pushNamed(RoutePaths.favRoute.routeName);
-                      },
-                    ),
-                    ListTile(
-                      leading: Icon(Icons.logout),
-                      title: const Text('Logout'),
-                      onTap: () async {
-                        final confirm =
-                            await LogoutAlertDialogue.showAlert(context) ??
-                                false;
-                        if (confirm) {
-                          await ref
-                              .read(loginControllerProvider.notifier)
-                              .logout();
-                        }
-                      },
-                      // context.go(RoutePaths.loginRoute.path);
-                    ),
-                    const Divider(),
-                    const ListTile(
-                      title: Text('Switch Mode'),
-                    ),
-                    Switch.adaptive(
-                      value: isDarkTheme,
-                      onChanged: (isDarkModeEnabled) {
-                        ref.read(themeProvider.notifier).updateCurrentThemeMode(
-                              isDarkModeEnabled
-                                  ? ThemeMode.dark
-                                  : ThemeMode.light,
-                            );
-                      },
-                    ),
-                  ],
-                )
-              : Center(
-                  child: IconButton(
+                  ),
+                  ListTile(
+                    leading: const Icon(Icons.favorite),
+                    title: const Text('Favorites'),
+                    onTap: () {
+                      context.pushNamed(RoutePaths.favRoute.routeName);
+                    },
+                  ),
+                  ListTile(
+                    leading: const Icon(Icons.logout),
+                    title: const Text('Logout'),
+                    onTap: () async {
+                      final confirm =
+                          await LogoutAlertDialogue.showAlert(context) ?? false;
+                      if (confirm) {
+                        await ref
+                            .read(loginControllerProvider.notifier)
+                            .logout();
+                      }
+                    },
+                    // context.go(RoutePaths.loginRoute.path);
+                  ),
+                  const Divider(),
+                  const ListTile(
+                    title: Text('Switch Mode'),
+                  ),
+                  Switch.adaptive(
+                    value: isDarkTheme,
+                    onChanged: (isDarkModeEnabled) {
+                      ref.read(themeProvider.notifier).updateCurrentThemeMode(
+                            isDarkModeEnabled
+                                ? ThemeMode.dark
+                                : ThemeMode.light,
+                          );
+                    },
+                  ),
+                ],
+              )
+            : Center(
+                child: IconButton(
                   onPressed: () => context.go(RoutePaths.loginRoute.path),
                   icon: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -153,7 +190,9 @@ class _LatestMoviesPageState extends ConsumerState<LatestMoviesPage> {
                       Text('Login'),
                     ],
                   ),
-                ))),
+                ),
+              ),
+      ),
       body: _searchController.text.isNotEmpty || _searchController.text != ''
           ? SearchMoviesGridView(query: _searchController.text)
           : const LatestMoviesGridView(),

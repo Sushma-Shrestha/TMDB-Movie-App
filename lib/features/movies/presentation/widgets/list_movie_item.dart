@@ -56,7 +56,7 @@ class ListMovieItem extends ConsumerWidget {
                 overflow: TextOverflow.ellipsis,
                 textAlign: TextAlign.justify,
                 text: TextSpan(
-                  style: Theme.of(context).textTheme.subtitle2?.copyWith(
+                  style: Theme.of(context).textTheme.titleSmall?.copyWith(
                         fontWeight: FontWeight.w600,
                         overflow: TextOverflow.ellipsis,
                       ),
@@ -71,8 +71,8 @@ class ListMovieItem extends ConsumerWidget {
                 ),
               ),
               Text(
-                '${movie.releaseDate}',
-                style: Theme.of(context).textTheme.subtitle2?.copyWith(
+                movie.releaseDate,
+                style: Theme.of(context).textTheme.titleSmall?.copyWith(
                       fontWeight: FontWeight.w500,
                       overflow: TextOverflow.ellipsis,
                     ),

@@ -20,21 +20,22 @@ void main() {
     'vote_count': 585
   };
   const movieExampleData = MovieModel(
-      adult: false,
-      backdropPath: '/A3m5GJu5kzAKK2wkGlzErlCCElT.jpg',
-      genreIds: [16, 12, 28, 14],
-      id: 900667,
-      originalLanguage: 'ja',
-      originalTitle: 'ONE PIECE FILM RED',
-      overview:
-          'Uta — the most beloved singer in the world. Her voice, which she..',
-      popularity: 814.098,
-      posterPath: '/ogDXuVkO92GcETZfSofXXemw7gb.jpg',
-      releaseDate: '2022-08-06',
-      title: 'One Piece Film Red',
-      video: false,
-      voteAverage: 7.4,
-      voteCount: 585);
+    adult: false,
+    backdropPath: '/A3m5GJu5kzAKK2wkGlzErlCCElT.jpg',
+    genreIds: [16, 12, 28, 14],
+    id: 900667,
+    originalLanguage: 'ja',
+    originalTitle: 'ONE PIECE FILM RED',
+    overview:
+        'Uta — the most beloved singer in the world. Her voice, which she..',
+    popularity: 814.098,
+    posterPath: '/ogDXuVkO92GcETZfSofXXemw7gb.jpg',
+    releaseDate: '2022-08-06',
+    title: 'One Piece Film Red',
+    video: false,
+    voteAverage: 7.4,
+    voteCount: 585,
+  );
 
   group(
     'Test for movie model response',

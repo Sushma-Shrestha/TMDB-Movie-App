@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:movie_app/core/core.dart';
 import 'package:movie_app/features/movies/infrastructure/models/favourite_model.dart';
 import 'package:movie_app/features/movies/infrastructure/repositories/favourite_repository.dart';
@@ -20,7 +19,7 @@ class FavouriteRepositoryImpl implements FavouriteRepository {
     required bool forceRefresh,
   }) async {
     try {
-      var favDoc = await _favourites.doc(uid).get();
+      final favDoc = await _favourites.doc(uid).get();
 
       if (!favDoc.exists) {
         return left(
@@ -49,7 +48,7 @@ class FavouriteRepositoryImpl implements FavouriteRepository {
     try {
       final favDoc = await _favourites.doc(uid).get();
       if (!favDoc.exists) {
-        _favourites.doc(uid).set({
+        await _favourites.doc(uid).set({
           'uid': uid,
           'movieId[0]': {
             [
@@ -76,7 +75,6 @@ class FavouriteRepositoryImpl implements FavouriteRepository {
     } on FirebaseException catch (e) {
       throw e.message!;
     } catch (e) {
-      print(e);
       return Right(Failure.fromException(e));
     }
   }
@@ -113,10 +111,8 @@ class FavouriteRepositoryImpl implements FavouriteRepository {
         );
       }
     } on FirebaseException catch (e) {
-      print("i am here");
       throw e.message!;
     } catch (e) {
-      print("i am here");
       return Right(Failure.fromException(e));
     }
   }

@@ -25,7 +25,7 @@ class CustomShimmer extends StatelessWidget {
         margin: const EdgeInsets.symmetric(horizontal: 2, vertical: 2),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(4),
-          color: Theme.of(context).backgroundColor,
+          color: Theme.of(context).colorScheme.background,
         ),
         height: height,
         width: width,

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:movie_app/core/core.dart';
 import 'package:movie_app/features/movies/movies.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 class SearchMoviesGridView extends ConsumerStatefulWidget {
+  const SearchMoviesGridView({super.key, this.query = ''});
   final String? query;
-  const SearchMoviesGridView({super.key, this.query = ""});
 
   @override
   ConsumerState<SearchMoviesGridView> createState() =>

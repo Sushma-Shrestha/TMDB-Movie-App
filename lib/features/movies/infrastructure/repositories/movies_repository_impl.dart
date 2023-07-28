@@ -52,7 +52,7 @@ class MoviesRepositoryImpl implements MoviesRepository {
     String api_key = AppConfigs.apiKey,
   }) async {
     final responseData = await httpService.get(
-      Endpoints.movieDetailsEndpoint + '$movieId',
+      '${Endpoints.movieDetailsEndpoint}$movieId',
       forceRefresh: forceRefresh,
       queryParameters: <String, dynamic>{
         // 'movie_id': movieId,
@@ -84,7 +84,7 @@ class MoviesRepositoryImpl implements MoviesRepository {
     String api_key = AppConfigs.apiKey,
   }) async {
     final responseData = await httpService.get(
-      Endpoints.suggestedMoviesEndpoint + '$movieId/recommendations',
+      '${Endpoints.suggestedMoviesEndpoint}$movieId/recommendations',
       forceRefresh: forceRefresh,
       queryParameters: <String, dynamic>{
         'id': movieId,

@@ -34,7 +34,7 @@ class CustomButton extends StatelessWidget {
         height: height ?? 50,
         alignment: Alignment.center,
         decoration: BoxDecoration(
-          color: Theme.of(context).coreRed,
+          color: Theme.of(context).coreBlue,
           borderRadius: BorderRadius.circular(4),
         ),
         child: loading
@@ -48,7 +48,7 @@ class CustomButton extends StatelessWidget {
                 style: titleStyle ??
                     Theme.of(context)
                         .textTheme
-                        .subtitle1
+                        .titleMedium
                         ?.copyWith(color: Theme.of(context).coreWhite),
               ),
       ),

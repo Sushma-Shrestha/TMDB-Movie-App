@@ -55,9 +55,9 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
     return KeyboardVisibilityBuilder(
       builder: (context, isKeyboardVisible) {
         return Scaffold(
-          backgroundColor: Theme.of(context).backgroundColor,
+          backgroundColor: Theme.of(context).colorScheme.background,
           appBar: AppBar(
-            backgroundColor: Theme.of(context).backgroundColor,
+            backgroundColor: Theme.of(context).colorScheme.background,
             elevation: 0,
             leadingWidth: 100,
             leading: Padding(
@@ -75,7 +75,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                 },
                 child: Text(
                   'Skip'.hardcoded,
-                  style: Theme.of(context).textTheme.subtitle1?.copyWith(
+                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
                         color: Theme.of(context).primaryColor,
                       ),
                 ),
@@ -110,14 +110,14 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                               'Welcome Back,'.hardcoded,
                               style: Theme.of(context)
                                   .textTheme
-                                  .headline5
+                                  .headlineSmall
                                   ?.copyWith(fontWeight: FontWeight.w400),
                             ),
                             Text(
                               'Sign in to continue'.hardcoded,
                               style: Theme.of(context)
                                   .textTheme
-                                  .subtitle1
+                                  .titleMedium
                                   ?.copyWith(fontWeight: FontWeight.w500),
                             ),
                             const SizedBox(height: 30),
@@ -180,7 +180,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                                     'OR'.hardcoded,
                                     style: Theme.of(context)
                                         .textTheme
-                                        .bodyText2
+                                        .bodyMedium
                                         ?.copyWith(fontWeight: FontWeight.w500),
                                   ),
                                 ),
@@ -205,7 +205,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                             children: [
                               TextSpan(
                                 text: "Don't have an account? ".hardcoded,
-                                style: Theme.of(context).textTheme.subtitle2,
+                                style: Theme.of(context).textTheme.titleSmall,
                               ),
                               TextSpan(
                                 recognizer: TapGestureRecognizer()
@@ -214,9 +214,9 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                                 text: 'Sign Up'.hardcoded,
                                 style: Theme.of(context)
                                     .textTheme
-                                    .subtitle2
+                                    .titleSmall
                                     ?.copyWith(
-                                      color: Theme.of(context).coreRed,
+                                      color: Theme.of(context).coreBlue,
                                     ),
                               ),
                             ],

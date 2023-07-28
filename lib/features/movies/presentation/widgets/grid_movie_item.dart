@@ -4,7 +4,6 @@ import 'package:go_router/go_router.dart';
 import 'package:movie_app/core/core.dart';
 import 'package:movie_app/features/auth/auth.dart';
 import 'package:movie_app/features/movies/application/favourite_controlller.dart';
-import 'package:movie_app/features/movies/application/favourite_provider.dart';
 import 'package:movie_app/features/movies/movies.dart';
 
 class GridMovieItem extends ConsumerStatefulWidget {
@@ -29,7 +28,12 @@ class _GridMovieItemState extends ConsumerState<GridMovieItem> {
     super.initState();
   }
 
-  void addfavourite(String? uid, String id, String title, String image) async {
+  Future<void> addfavourite(
+    String? uid,
+    String id,
+    String title,
+    String image,
+  ) async {
     final movieInfo = MovieInfo(
       id: id,
       title: title,
@@ -57,7 +61,6 @@ class _GridMovieItemState extends ConsumerState<GridMovieItem> {
   @override
   Widget build(BuildContext context) {
     final movie = ref.watch(currentMovieItemProvider);
-    final favitems = ref.watch(favouriteProvider);
     final size = MediaQuery.of(context).size;
     final uid = ref.read(authStatusProvider).user?.uid;
     return Container(
@@ -118,7 +121,7 @@ class _GridMovieItemState extends ConsumerState<GridMovieItem> {
                             children: [
                               TextSpan(
                                 text:
-                                    '[${movie.originalLanguage.toUpperCase()}] ',
+                                    '[${movie.originalLanguage.toUpperCase()}]',
                               ),
                               TextSpan(
                                 text: movie.originalTitle,
@@ -147,7 +150,7 @@ class _GridMovieItemState extends ConsumerState<GridMovieItem> {
                     },
                     icon: (isPresent(movie.id))
                         ? const Icon(Icons.favorite, color: Colors.red)
-                        : Icon(Icons.favorite_border),
+                        : const Icon(Icons.favorite_border),
                   )
                 ],
               ),

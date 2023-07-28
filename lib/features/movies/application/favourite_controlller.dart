@@ -3,8 +3,6 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:movie_app/core/core.dart';
-import 'package:movie_app/features/movies/application/favourite_provider.dart';
-import 'package:movie_app/features/movies/infrastructure/repositories/favourite_repository.dart';
 import 'package:movie_app/features/movies/movies.dart';
 
 final latestFavouriteController =
@@ -43,12 +41,7 @@ class FavouriteController<T> extends StateNotifier<BaseState<dynamic>> {
   ) async {
     Either<void, Failure> res;
     final favourite = ref.read(favouriteProvider);
-    // from
-    // {uid: "657687vhj", movieId: [{id: "1", title: "movie1", image: "image1"}, {id: "2", title: "movie2", image: "image2"}]}
-    // find, if movieId contains id : 1
-    // if yes, remove it
-    // if no, add it
-    bool isPresent = false;
+    var isPresent = false;
     for (var i = 0; i < favourite.movieId.length; i++) {
       if (favourite.movieId[i].id == movie[0].id) {
         isPresent = true;
@@ -74,9 +67,7 @@ class FavouriteController<T> extends StateNotifier<BaseState<dynamic>> {
         movieId: res.fold(
           (success) {
             if (isPresent) {
-              // print(
-              //     favourite.movieId.where((id) => id != movie[0].id).toList());
-              List<MovieInfo> movieId = [];
+              final movieId = <MovieInfo>[];
               for (var i = 0; i < favourite.movieId.length; i++) {
                 if (favourite.movieId[i].id != movie[0].id) {
                   movieId.add(favourite.movieId[i]);

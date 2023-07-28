@@ -21,7 +21,7 @@ class MovieQualityLabel extends StatelessWidget {
         quality,
         style: Theme.of(context)
             .textTheme
-            .button
+            .labelLarge
             ?.copyWith(fontWeight: FontWeight.w500),
       ),
     );

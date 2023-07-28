@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:movie_app/core/core.dart';
 import 'package:movie_app/features/auth/application/application.dart';
-import 'package:movie_app/features/movies/application/application.dart';
 import 'package:movie_app/features/movies/application/favourite_controlller.dart';
 import 'package:movie_app/features/movies/movies.dart';
 
@@ -19,22 +18,22 @@ class _FavouriteListState extends ConsumerState<FavouriteList> {
   Widget build(BuildContext context) {
     final favItems = ref.watch(favouriteProvider);
     return Scaffold(
-        appBar: AppBar(
-          title: const Text('Favourite'),
-        ),
-        body: favItems.movieId.length > 0
-            ? ListView.builder(
-                // physics: const NeverScrollableScrollPhysics(),
-                // shrinkWrap: true,
-                itemBuilder: (context, index) => FavItemTile(
-                  favItems.movieId[index].id,
-                  favItems.movieId[index].title,
-                  favItems.movieId[index].image,
-                ),
-                itemCount: favItems.movieId.length,
-              )
-            : Center(
-                child: Column(
+      appBar: AppBar(
+        title: const Text('Favourite'),
+      ),
+      body: favItems.movieId.length > 0
+          ? ListView.builder(
+              // physics: const NeverScrollableScrollPhysics(),
+              // shrinkWrap: true,
+              itemBuilder: (context, index) => FavItemTile(
+                favItems.movieId[index].id,
+                favItems.movieId[index].title,
+                favItems.movieId[index].image,
+              ),
+              itemCount: favItems.movieId.length,
+            )
+          : Center(
+              child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const Icon(Icons.favorite_border_outlined, size: 50),
@@ -49,15 +48,17 @@ class _FavouriteListState extends ConsumerState<FavouriteList> {
                     child: const Text('Explore Movies'),
                   )
                 ],
-              )));
+              ),
+            ),
+    );
   }
 }
 
 class FavItemTile extends ConsumerStatefulWidget {
+  const FavItemTile(this.id, this.title, this.image, {super.key});
   final String id;
   final String title;
   final String image;
-  const FavItemTile(this.id, this.title, this.image, {super.key});
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() => _FavItemTileState();
@@ -71,7 +72,6 @@ class _FavItemTileState extends ConsumerState<FavItemTile> {
 
   @override
   Widget build(BuildContext context) {
-    final uid = ref.read(authStatusProvider).user?.uid;
     return Container(
       margin: const EdgeInsets.all(10),
       padding: const EdgeInsets.all(10),

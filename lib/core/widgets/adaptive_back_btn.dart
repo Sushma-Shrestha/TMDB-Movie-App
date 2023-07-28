@@ -44,7 +44,7 @@ class _AdaptiveBackBtnState extends State<AdaptiveBackBtn>
       child: Center(
         child: ClipOval(
           child: Material(
-            color: Theme.of(context).backgroundColor,
+            color: Theme.of(context).colorScheme.background,
             child: InkWell(
               onTap: () => context.pop(),
               child: const Padding(
