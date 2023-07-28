@@ -55,9 +55,6 @@ class MoviesRepositoryImpl implements MoviesRepository {
       '${Endpoints.movieDetailsEndpoint}$movieId',
       forceRefresh: forceRefresh,
       queryParameters: <String, dynamic>{
-        // 'movie_id': movieId,
-        // 'with_images': withImages,
-        // 'with_cast': withCast,
         'api_key': AppConfigs.apiKey,
       },
     );

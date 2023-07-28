@@ -72,6 +72,11 @@ class _FavItemTileState extends ConsumerState<FavItemTile> {
 
   @override
   Widget build(BuildContext context) {
+    final movie = MovieModel(
+      id: int.parse(widget.id),
+      title: widget.title,
+      posterPath: widget.image,
+    );
     return Container(
       margin: const EdgeInsets.all(10),
       padding: const EdgeInsets.all(10),
@@ -81,19 +86,34 @@ class _FavItemTileState extends ConsumerState<FavItemTile> {
       ),
       child: Row(
         children: [
-          AppCachedNetworkImage(
-            imageUrl: AppConfigs.apiImageUrl + widget.image,
-            width: 50,
-            fit: BoxFit.cover,
-          ),
-          const SizedBox(
-            width: 10,
-          ),
-          Container(
-            width: MediaQuery.of(context).size.width / 3,
-            child: Text(
-              widget.title,
-              overflow: TextOverflow.ellipsis,
+          GestureDetector(
+            onTap: () {
+              context.pushNamed(
+                RoutePaths.movieDetail.routeName,
+                params: {
+                  'id': widget.id,
+                },
+                extra: movie,
+              );
+            },
+            child: Row(
+              children: [
+                AppCachedNetworkImage(
+                  imageUrl: AppConfigs.apiImageUrl + widget.image,
+                  width: 50,
+                  fit: BoxFit.cover,
+                ),
+                const SizedBox(
+                  width: 10,
+                ),
+                Container(
+                  width: MediaQuery.of(context).size.width / 3,
+                  child: Text(
+                    widget.title,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
+              ],
             ),
           ),
           const Spacer(),
