@@ -37,6 +37,37 @@ void main() {
     voteCount: 585,
   );
 
+  const rawFavouriteData = <String, dynamic>{
+    'uid': 'ghj56768',
+    'movieId': [
+      {
+        'id': '900667',
+        'title': 'One Piece Film Red',
+        'image': '/ogDXuVkO92GcETZfSofXXemw7gb.jpg',
+      },
+      {
+        'id': '9006672',
+        'title': 'One Piece Film Red v2',
+        'image': '/ogDXuVkO92GcETZfSofXXemw7gb.jpg',
+      }
+    ]
+  };
+  const favouriteData = Favourite(
+    uid: 'ghj56768',
+    movieId: [
+      MovieInfo(
+        id: '900667',
+        title: 'One Piece Film Red',
+        image: '/ogDXuVkO92GcETZfSofXXemw7gb.jpg',
+      ),
+      MovieInfo(
+        id: '9006672',
+        title: 'One Piece Film Red v2',
+        image: '/ogDXuVkO92GcETZfSofXXemw7gb.jpg',
+      )
+    ],
+  );
+
   group(
     'Test for movie model response',
     () {
@@ -52,6 +83,15 @@ void main() {
       test('can convert movie data model toJson', () {
         expect(movieExampleData.toJson(), rawMovieExampleData);
       });
+      test(
+        'can parse data to  favourite model fromJson',
+        () async {
+          expect(
+            Favourite.fromJson(rawFavouriteData),
+            equals(favouriteData),
+          );
+        },
+      );
     },
   );
 }
