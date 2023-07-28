@@ -94,7 +94,6 @@ lib
 
 - [firebase_auth: ^4.2.3](https://pub.dev/packages/firebase_auth)
 - [google_sign_in: ^5.4.2](https://pub.dev/packages/google_sign_in)
-- [flutter_facebook_login 3.0.0](https://pub.dev/packages/flutter_facebook_login)
 
 ## Plugins and Packages used :
 
@@ -151,38 +150,3 @@ lib
 - [clock: ^1.1.1](https://pub.dev/packages/clock)
 - [cached_network_image: ^3.2.3](https://pub.dev/packages/cached_network_image)
 - [very_good_analysis: ^3.1.0](https://pub.dev/packages/very_good_analysis)
-
-## Previews
-
-<table>
-  <tr>
-    <td>Light Mode</td>
-     <td>Dark Mode</td>
-</tr>
-<tr>
-    <td><img style="display: inline-block" src="https://user-images.githubusercontent.com/44658790/209639361-488728f2-fd52-4d74-a0af-7c8ab60affb6.png"/>
-    </td>
-    <td><img style="display: inline-block" src="https://user-images.githubusercontent.com/44658790/209639375-f294e78e-ccde-4d30-8a15-415ccf37463b.png"/>
-    </td>
-    </tr>
-    <tr>
-    <td><img style="display: inline-block" src ="https://user-images.githubusercontent.com/44658790/209639366-06fcdf78-c28a-4752-92a5-90fb13591549.png"/>
-    </td>
-    <td><img style="display: inline-block" src ="https://user-images.githubusercontent.com/44658790/209639383-307b85c3-2887-413c-b720-f73ac544b291.png"/>
-    </td>
-  </tr>
-  <tr>
-</td>
-    <td><img style="display: inline-block" src ="https://user-images.githubusercontent.com/44658790/209640131-e5f09b74-6925-4c21-8e22-035aaddbccaf.gif" />
-    <td><img style="display: inline-block" src ="https://user-images.githubusercontent.com/44658790/209639803-2599d420-c558-44f7-a94d-a41f072a38c7.gif" />
-</td>
-</tr>
-</table>
-
-# How to contribute
-
-<p align="center">
-🚧 This project is still under development phase 🚧</p>
-
-- If encountered any bugs feel free to report [here](https://github.com/flutterians/movie_app/issues)
-- If you want to contribute to the project you can send [Pull request](https://github.com/flutterians/movie_app/pulls).
